@@ -14,29 +14,15 @@
 # limitations under the License.
 #
 
-$(call inherit-product-if-exists, vendor/lge/f320/f320-vendor.mk)
+$(call inherit-product-if-exists, vendor/lge/d802/d802-vendor.mk)
 $(call inherit-product, device/lge/g2-common/g2.mk)
 
 ## overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Init files not shared with G2-common
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.g2.sdcard.rc:root/init.g2.sdcard.rc
-
-# GSM permissions
-PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-	frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
-
-# NFC packages
-PRODUCT_PACKAGES += \
-    nfc_nci.bcm2079x.default
-
-# NFC configs
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf
+# NFC
+$(call inherit-product, device/lge/g2-common/nfc.mk)
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sensor_def_f320.conf:system/etc/sensor_def_variable.conf
+    $(LOCAL_PATH)/configs/sensor_def_d802.conf:system/etc/sensor_def_variable.conf
